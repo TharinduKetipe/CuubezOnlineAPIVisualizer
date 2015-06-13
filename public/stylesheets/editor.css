@@ -1,0 +1,19 @@
+#editor { 
+        position: absolute;
+        top: 10%;
+        right: 50%;
+        bottom: 10%;
+        left: 0;
+    }
+#documentation {
+
+	position: absolute;
+        top: 10%;
+        right: 0;
+        bottom: 10%;
+        left: 50%;
+
+
+
+
+}
