@@ -5,15 +5,43 @@ var editor = ace.edit("editor");
 
 
 
+
 editor.getSession().on('change', function(e) {
-    // e.type, etc
-    var code  = editor.getValue();
-    window.alert(code);
+
+
+    nativeObject = YAML.parse(editor.getValue());
+    //window.alert(nativeObject);
+    console.log(nativeObject);
+
+
+
+});
+var code  = editor.getValue();
+nativeObject = YAML.parse(editor.getValue());
+console.log(nativeObject);
+
+
+
+editor.getSession().on('change', function(e) {
+
+
+        nativeObject = YAML.parse(editor.getValue());
+        //window.alert(nativeObject);
+        var out  = nativeObject.toString();
+        window.alert(editor.getValue());
+        console.log(out);
+
+    //}
+
 });
 
 var code  = editor.getValue();
-console.log(code);
 //console.log(code);
+//console.log(code);
+
+
+
+
 
 
 
