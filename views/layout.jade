@@ -1,4 +1,4 @@
-doctype html
+doctype html(ng-app='myApp')
 html
   html
     head(lang='en')
@@ -345,7 +345,7 @@ html
     form(name='myForm', ng-controller='jsonCtrl')
         p {{myData}}
         input#jsoncode(type='hidden', name='input', ng-model='myData')
-    .container(ng-controller='myController')
+    .container(ng-controller='jsonCtrl')
         table(border='0')
             tr(ng-repeat='data in myData.web_app.main')
                 .page-header
