@@ -12,7 +12,11 @@ html
       link(href='/javascripts/bootstrap.js', rel='stylesheet')
       link(href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', rel='stylesheet')
       link(href='http://fonts.googleapis.com/css?family=Righteous', rel='stylesheet', type='text/css')
-<body>
+      link(href='/stylesheets/sweetalert.css', rel='stylesheet')
+      link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css')
+      link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css')
+
+<body ng-app="myApp">
 
 <nav class="navbar navbar-default">
 <div class="container-fluid">
@@ -56,35 +60,277 @@ html
 <div id="editor" class="col-md-6">
 
 :verbatim
-  --- !clarkevans.com/^invoice
-  invoice: 34843
-  date   : 2001-01-23
-  bill-to: &id001
-      given  : Chris
-      family : Dumars
-      address:
-          lines: |
-              458 Walkman Dr.
-              Suite #292
-          city    : Royal Oak
-          state   : MI
-          postal  : 48046
-  ship-to: *id001
-  product:
-      - sku         : BL394D
-        quantity    : 4
-        description : Basketball
-        price       : 450.00
-      - sku         : BL4438H
-        quantity    : 1
-        description : Super Hoop
-        price       : 2392.00
-  tax  : 251.42
-  total: 4443.52
-  comments: >
-      Late afternoon is best.
-      Backup contact is Nancy
-      Billsmer @ 338-4338.
+    ---
+    web_app:
+      main:
+        -
+          Description_title: "Cuubez API Description"
+          Description: "Use virtual networking services among devices that are managed by the OpenStack Compute service. The Networking (neutron) API v2.0 combines the API v1.1 functionality with some essential Internet Protocol Address Management (IPAM) functionality."
+      head:
+        -
+          class_server: "employee resource"
+          title: "cuubez example employee"
+      methode_server:
+        get_group:
+          -
+            name: "employees"
+            description: "get all the employee from the repository"
+            response:
+              -
+                code: "500"
+                reason: "internal server error"
+              -
+                code: "200"
+                reason: "success response"
+            body:
+              -
+                type: "object"
+                id: "urn:jsonschema:com:cuubez:example:entity:Employee"
+                properties:
+                  address:
+                    type: "string"
+                  department:
+                    type: "string"
+                  name:
+                    type: "string"
+                  empId:
+                    type: "string"
+                  telNo:
+                    type: "string"
+        post_single:
+          -
+            name: "employees"
+            description: "get all the employee from the repository"
+            response:
+              -
+                code: "500"
+                reason: "internal server error"
+              -
+                code: "200"
+                reason: "success response"
+            body:
+              -
+                type: "object"
+                id: "urn:jsonschema:com:cuubez:example:entity:Employee"
+                properties:
+                  address:
+                    type: "string"
+                  department:
+                    type: "string"
+                  name:
+                    type: "string"
+                  empId:
+                    type: "string"
+                  telNo:
+                    type: "string"
+        get_single:
+          -
+            name: "employees/{empId}"
+            description: "get single employee from the repository"
+            request:
+              -
+                parameter: "(QP)empId"
+                type: "string"
+                description: "employee identity"
+              -
+                parameter: "(HP)org_Id"
+                type: "string"
+                description: "organization identity"
+            response:
+              -
+                code: "500"
+                reason: "internal server error"
+              -
+                code: "200"
+                reason: "succes response"
+              -
+                code: "400"
+                reason: "no employee found"
+        delete_single:
+          -
+            name: "employees/{empId}"
+            description: "delete single employee from the repository"
+            request:
+              -
+                parameter: "(PP)empId"
+                type: "string"
+                description: "employee identity"
+            response:
+              -
+                code: "500"
+                reason: "internal server error"
+              -
+                code: "200"
+                reason: "succes response"
+              -
+                code: "400"
+                reason: "no employee found"
+        put_single:
+          -
+            name: "employees/{empId}"
+            description: "update single employee"
+            request:
+              -
+                parameter: "(PP)empId"
+                type: "string"
+                description: "employee identity"
+            body:
+              -
+                type: "object"
+                id: "urn:jsonschema:com:cuubez:example:entity:Employee"
+                properties:
+                  address:
+                    type: "string"
+                  department:
+                    type: "string"
+                  name:
+                    type: "string"
+                  empId:
+                    type: "string"
+                  telNo:
+                    type: "string"
+            response:
+              -
+                code: "500"
+                reason: "internal server error"
+              -
+                code: "200"
+                reason: "succes response"
+              -
+                code: "400"
+                reason: "no employee found"
+    client_app:
+      methode_client:
+        head:
+          -
+            class_client: "User resource"
+            title: "/users"
+        post_single_user:
+          -
+            name: "users"
+            description: "Add new user to repository"
+            response:
+              -
+                code: "500"
+                reason: "internal server error"
+              -
+                code: "200"
+                reason: "success response"
+            body:
+              -
+                type: "object"
+                id: "urn:jsonschema:com:cuubez:example:entity:Employee"
+                properties:
+                  address:
+                    type: "string"
+                  department:
+                    type: "string"
+                  name:
+                    type: "string"
+                  empId:
+                    type: "string"
+                  telNo:
+                    type: "string"
+        delete_single_user:
+          -
+            name: "users/{userId}"
+            description: "delete single user from the repository "
+            request:
+              -
+                parameter: "(PP)userId"
+                type: "string"
+                description: "user identity"
+            response:
+              -
+                code: "500"
+                reason: "internal server error"
+              -
+                code: "200"
+                reason: "succes response"
+              -
+                code: "400"
+                reason: "no employee found"
+        put_single_user:
+          -
+            name: "users/{userId}"
+            description: "update single user"
+            request:
+              -
+                parameter: "(PP)userId"
+                type: "string"
+                description: "user identity"
+            body:
+              -
+                type: "object"
+                id: "urn:jsonschema:com:cuubez:example:entity:User"
+                properties:
+                  address:
+                    type: "string"
+                  department:
+                    type: "string"
+                  name:
+                    type: "string"
+                  userId:
+                    type: "string"
+                  telNo:
+                    type: "string"
+            response:
+              -
+                code: "500"
+                reason: "internal server error"
+              -
+                code: "200"
+                reason: "succes response"
+              -
+                code: "400"
+                reason: "no user found"
+        get_users:
+          -
+            name: "users"
+            description: "get all the users from the repository"
+            response:
+              -
+                code: "500"
+                reason: "internal server error"
+              -
+                code: "200"
+                reason: "success response"
+            body:
+              -
+                type: "object"
+                id: "urn:jsonschema:com:cuubez:example:entity:User"
+                properties:
+                  address:
+                    type: "string"
+                  department:
+                    type: "string"
+                  name:
+                    type: "string"
+                  userId:
+                    type: "string"
+                  telNo:
+                    type: "string"
+        get_single_user:
+          -
+            name: "users/{userId}"
+            description: "get single user from the repository"
+            request:
+              -
+                parameter: "(PP)userId"
+                type: "string"
+                description: "user identity"
+            response:
+              -
+                code: "500"
+                reason: "internal server error"
+              -
+                code: "200"
+                reason: "succes response"
+              -
+                code: "400"
+                reason: "no user found"
+
+
 
 
 
@@ -95,43 +341,415 @@ html
 </div>
 
 
-<div id="documentation" class="col-md-6">
-
-:verbatim
-  <pre>
-  Cuubez Sample API Description
-  Use virtual networking services among devices that are managed by the OpenStack Compute service. The Networking (neutron) API v2.0 combines the API v1.1 functionality with some essential Internet Protocol Address Management (IPAM) functionality.
-    /employee : Employee resource
-  -
-  GET /employees/ getEmployees
-  POST /employees/ postEmployee
-  GET /employees/{empId} getEmployee
-  GET SINGLE EMPLOYEE FROM THE REPOSITORY
-  Request
-       Parameter	Type	Description
-       (QP)empId	String	employee identity
-  (HP)org_id	String	Organization id
-  Response
-  HTTP Status Code	Reason
-  500	Internal Server Error
-  200	Success Response
-  400	No employee found
-  DELETE /employees/{empId} deleteEmployee
-  PUT /employees/{empId} updateEmployee
-  /users : User resource
-  -
-  POST /users/ postUser
-  DELETE /users/{userId} deleteUser
-  PUT /users/{userId} updateUser
-  GET /users/ getUsers
-  GET /users/{userId} getUser
-
-  </pre>
-
-</div>
-</div>
-
-
+#documentation.col-md-6
+    form(name='myForm', ng-controller='jsonCtrl')
+        p {{myData}}
+        input#jsoncode(type='hidden', name='input', ng-model='myData')
+    .container(ng-controller='myController')
+        table(border='0')
+            tr(ng-repeat='data in myData.web_app.main')
+                .page-header
+                    td
+                        h1  {{data.Description_title}}
+            tr(ng-repeat='data in myData.web_app.main')
+                .page-header
+                    td
+                        h3 {{data.Description}}
+        .panel.panel-default
+            .panel-heading.clickable
+                h3.panel-title
+                    table(border='0')
+                        tr(ng-repeat='data in myData.web_app.head')
+                            td
+                                h4  {{data.title}}
+                            td {{data.class_server}}
+        //
+          <tr ng-repeat="data in myData.web_app">
+          <td><h4> {{data.Description_title}}  </h4></td>
+          <td>{{data.Description}}</td>
+          </tr>
+        .panel.panel-primary
+            .panel-heading.clickable
+                h3.panel-title
+                    table(border='0')
+                        tr(ng-repeat='data in myData.web_app.methode_server.get_group')
+                            td
+                                h5  GET /
+                            td {{data.name}}
+                span.pull-right
+                    i.glyphicon.glyphicon-minus
+            .panel-body
+                table.table(border='0')
+                    tr(ng-repeat='data in myData.web_app.methode_server.get_group')
+                        td {{data.description}}
+                        table.table(border='1')
+                            | RESPONSE:
+                            tr
+                                th Code
+                                th Reason
+                            tr(ng-repeat='data in myData.web_app.methode_server.get_group')
+                                td {{data.response[0].code}}
+                                td {{data.response[0].reason}}
+                            tr(ng-repeat='data in myData.web_app.methode_server.get_group')
+                                td {{data.response[1].code}}
+                                td {{data.response[1].reason}}
+                        table(border='0')
+                            | BODY
+                            tr(ng-repeat='data in myData.web_app.methode_server.get_group')
+                                td
+                                    textarea.form-control(readonly='', cols='100', rows='4')
+                                        | {{data.body | json}}
+        .panel.panel-success
+            .panel-heading.clickable
+                h3.panel-title
+                    table(border='0')
+                        tr(ng-repeat='data in myData.web_app.methode_server.get_group')
+                            td
+                                h5  POST /
+                            td {{data.name}}
+                span.pull-right
+                    i.glyphicon.glyphicon-minus
+            .panel-body
+                table.table(border='0')
+                    tr(ng-repeat='data in myData.web_app.methode_server.post_single')
+                        td {{data.description}}
+                        table.table(border='1')
+                            | RESPONSE:
+                            tr
+                                th Reason
+                            table(border='0')
+                                | BODY:
+                                table(border='0')
+                                    tr(ng-repeat='data in myData.web_app.methode_server.post_single')
+                                        td
+                                            textarea.body-textarea(readonly='', cols='100', rows='4')
+                                                | {{data.body | json}}
+                tr(ng-repeat='data in myData.web_app.methode_server.post_single')
+                    td {{data.response[0].code}}
+                    td {{data.response[0].reason}}
+                tr(ng-repeat='data in myData.web_app.methode_server.post_single')
+                    td {{data.response[1].code}}
+                    td {{data.response[1].reason}}
+        // - GET SINGLE
+        .panel.panel-primary
+            .panel-heading.clickable
+                h3.panel-title
+                    table(border='0')
+                        tr(ng-repeat='data in myData.web_app.methode_server.get_single')
+                            td
+                                h5  GET /
+                            td {{data.name}}
+                span.pull-right
+                    i.glyphicon.glyphicon-minus
+            .panel-body
+                table.table(border='0')
+                    tr(ng-repeat='data in myData.web_app.methode_server.get_single')
+                        td {{data.description}}
+                table.table(border='1')
+                    | REQUEST:
+                    tr
+                        th parameter
+                        th type
+                        th description
+                    tr(ng-repeat='data in myData.web_app.methode_server.get_single')
+                        td {{data.request[0].parameter}}
+                        td {{data.request[0].type}}
+                        td {{data.request[0].description}}
+                    tr(ng-repeat='data in myData.web_app.methode_server.get_single')
+                        td {{data.request[1].parameter}}
+                        td {{data.request[1].type}}
+                        td {{data.request[1].description}}
+                table.table(border='1')
+                    | RESPONSE:
+                    tr
+                        th code
+                        th reason
+                    tr(ng-repeat='data in myData.web_app.methode_server.get_single')
+                        td {{data.response[0].code}}
+                        td {{data.response[0].reason}}
+                    tr(ng-repeat='data in myData.web_app.methode_server.get_single')
+                        td {{data.response[1].code}}
+                        td {{data.response[1].reason}}
+                    tr(ng-repeat='data in myData.web_app.methode_server.get_single')
+                        td {{data.response[2].code}}
+                        td {{data.response[2].reason}}
+        .panel.panel-danger
+            .panel-heading.clickable
+                h3.panel-title
+                    table(border='0')
+                        tr(ng-repeat='data in myData.web_app.methode_server.delete_single')
+                            td
+                                h5  DELETE /
+                            td {{data.name}}
+                span.pull-right
+                    i.glyphicon.glyphicon-minus
+            .panel-body
+                table.table(border='0')
+                    tr(ng-repeat='data in myData.web_app.methode_server.delete_single')
+                        td {{data.description}}
+                table.table(border='1')
+                    | REQUEST:
+                    tr
+                        th parameter
+                        th type
+                        th description
+                    tr(ng-repeat='data in myData.web_app.methode_server.delete_single')
+                        td {{data.request[0].parameter}}
+                        td {{data.request[0].type}}
+                        td {{data.request[0].description}}
+                table.table(border='1')
+                    | RESPONSE:
+                    tr
+                        th code
+                        th reason
+                    tr(ng-repeat='data in myData.web_app.methode_server.delete_single')
+                        td {{data.response[0].code}}
+                        td {{data.response[0].reason}}
+                    tr(ng-repeat='data in myData.web_app.methode_server.delete_single')
+                        td {{data.response[1].code}}
+                        td {{data.response[1].reason}}
+                    tr(ng-repeat='data in myData.web_app.methode_server.delete_single')
+                        td {{data.response[2].code}}
+                        td {{data.response[2].reason}}
+        .panel.panel-warning
+            .panel-heading.clickable
+                h3.panel-title
+                    table(border='0')
+                        tr(ng-repeat='data in myData.web_app.methode_server.put_single')
+                            td
+                                h5  PUT /
+                            td {{data.name}}
+                span.pull-right
+                    i.glyphicon.glyphicon-minus
+            .panel-body
+                table.table(border='0')
+                    tr(ng-repeat='data in myData.web_app.methode_server.put_single')
+                        td {{data.description}}
+                        table.table(border='1')
+                            | REQUEST:
+                            tr
+                                th parameter
+                                th type
+                                th description
+                            tr(ng-repeat='data in myData.web_app.methode_server.put_single')
+                                td {{data.request[0].parameter}}
+                                td {{data.request[0].type}}
+                                td {{data.request[0].description}}
+                        table.table(border='1')
+                            | RESPONSE:
+                            tr
+                                th code
+                                th reason
+                            table(border='0')
+                                | BODY:
+                                table(border='0')
+                                    tr(ng-repeat='data in myData.web_app.methode_server.put_single')
+                                        td
+                                            textarea.body-textarea(readonly='', cols='100', rows='4')
+                                                | {{data.body | json}}
+                            tr(ng-repeat='data in myData.web_app.methode_server.put_single')
+                                td {{data.response[0].code}}
+                                td {{data.response[0].reason}}
+                            tr(ng-repeat='data in myData.web_app.methode_server.delete_single')
+                                td {{data.response[1].code}}
+                                td {{data.response[1].reason}}
+                            tr(ng-repeat='data in myData.web_app.methode_server.delete_single')
+                                td {{data.response[2].code}}
+                                td {{data.response[2].reason}}
+        .panel.panel-default
+            .panel-heading.clickable
+                h3.panel-title
+                    table(border='0')
+                        tr(ng-repeat='data in myData.client_app.methode_client.head')
+                            td
+                                h4  {{data.title}} :
+                            td
+                                h4  {{data.class_client}}
+        .panel.panel-success
+            .panel-heading.clickable
+                h3.panel-title
+                    table(border='0')
+                        tr(ng-repeat='data in myData.client_app.methode_client.post_single_user')
+                            td
+                                h5  POST /
+                            td {{data.name}}
+                span.pull-right
+                    i.glyphicon.glyphicon-minus
+            .panel-body
+                table.table(border='0')
+                    tr(ng-repeat='data in myData.client_app.methode_client.post_single_user')
+                        td {{data.description}}
+                        table.table(border='1')
+                            | RESPONSE:
+                            tr
+                                th Code
+                                th Reason
+                            tr(ng-repeat='data in myData.client_app.methode_client.post_single_user')
+                                td {{data.response[0].code}}
+                                td {{data.response[0].reason}}
+                            tr(ng-repeat='data in myData.client_app.methode_client.post_single_user')
+                                td {{data.response[1].code}}
+                                td {{data.response[1].reason}}
+                        table(border='0')
+                            | BODY:
+                            table(border='0')
+                                tr(ng-repeat='data in myData.client_app.methode_client.post_single_user')
+                                    td
+                                        textarea.body-textarea(readonly='', cols='100', rows='4')
+                                            | {{data.body | json}}
+        .panel.panel-danger
+            .panel-heading.clickable
+                h3.panel-title
+                    table(border='0')
+                        tr(ng-repeat='data in myData.client_app.methode_client.delete_single_user')
+                            td
+                                h5  DELETE /
+                            td {{data.name}}
+                span.pull-right
+                    i.glyphicon.glyphicon-minus
+            .panel-body
+                table.table(border='0')
+                    tr(ng-repeat='data in myData.client_app.methode_client.delete_single_user')
+                        td {{data.description}}
+                table.table(border='1')
+                    | REQUEST:
+                    tr
+                        th parameter
+                        th type
+                        th description
+                    tr(ng-repeat='data in myData.client_app.methode_client.delete_single_user')
+                        td {{data.request[0].parameter}}
+                        td {{data.request[0].type}}
+                        td {{data.request[0].description}}
+                table.table(border='1')
+                    | RESPONSE:
+                    tr
+                        th code
+                        th reason
+                    tr(ng-repeat='data in myData.client_app.methode_client.delete_single_user')
+                        td {{data.response[0].code}}
+                        td {{data.response[0].reason}}
+                    tr(ng-repeat='data in myData.client_app.methode_client.delete_single_user')
+                        td {{data.response[1].code}}
+                        td {{data.response[1].reason}}
+                    tr(ng-repeat='data in myData.client_app.methode_client.delete_single_user')
+                        td {{data.response[2].code}}
+                        td {{data.response[2].reason}}
+        .panel.panel-warning
+            .panel-heading.clickable
+                h3.panel-title
+                    table(border='0')
+                        tr(ng-repeat='data in myData.client_app.methode_client.put_single_user')
+                            td
+                                h5  PUT /
+                            td {{data.name}}
+                span.pull-right
+                    i.glyphicon.glyphicon-minus
+            .panel-body
+                table.table(border='0')
+                    tr(ng-repeat='data in myData.client_app.methode_client.put_single_user')
+                        td {{data.description}}
+                        table.table(border='1')
+                            | REQUEST:
+                            tr
+                                th parameter
+                                th type
+                                th description
+                            tr(ng-repeat='data in myData.client_app.methode_client.put_single_user')
+                                td {{data.request[0].parameter}}
+                                td {{data.request[0].type}}
+                                td {{data.request[0].description}}
+                        table.table(border='1')
+                            | RESPONSE:
+                            tr
+                                th code
+                                th reason
+                            tr(ng-repeat='data in myData.client_app.methode_client.put_single_user')
+                                td {{data.response[0].code}}
+                                td {{data.response[0].reason}}
+                            tr(ng-repeat='data in myData.client_app.methode_client.put_single_user')
+                                td {{data.response[1].code}}
+                                td {{data.response[1].reason}}
+                            tr(ng-repeat='data in myData.client_app.methode_client.put_single_user')
+                                td {{data.response[2].code}}
+                                td {{data.response[2].reason}}
+                        table(border='0')
+                            | BODY:
+                            table(border='0')
+                                tr(ng-repeat='data in myData.client_app.methode_client.put_single_user')
+                                    td
+                                        textarea.body-textarea(readonly='', cols='100', rows='4')
+                                            | {{data.body | json}}
+        .panel.panel-primary
+            .panel-heading.clickable
+                h3.panel-title
+                    table(border='0')
+                        tr(ng-repeat='data in myData.client_app.methode_client.get_users')
+                            td
+                                h5  GET /
+                            td {{data.name}}
+                span.pull-right
+                    i.glyphicon.glyphicon-minus
+            .panel-body
+                table.table(border='0')
+                    tr(ng-repeat='data in myData.client_app.methode_client.get_users')
+                        td {{data.description}}
+                        table.table(border='1')
+                            | RESPONSE:
+                            tr
+                                th Code
+                                th Reason
+                            tr(ng-repeat='data in myData.client_app.methode_client.get_users')
+                                td {{data.response[0].code}}
+                                td {{data.response[0].reason}}
+                            tr(ng-repeat='data in myData.client_app.methode_client.get_users')
+                                td {{data.response[1].code}}
+                                td {{data.response[1].reason}}
+                        table(border='0')
+                            | BODY:
+                            table(border='0')
+                                tr(ng-repeat='data in myData.client_app.methode_client.get_users')
+                                    td
+                                        textarea.body-textarea(readonly='', cols='100', rows='4')
+                                            | {{data.body | json}}
+        .panel.panel-primary
+            .panel-heading.clickable
+                h3.panel-title
+                    table(border='0')
+                        tr(ng-repeat='data in myData.client_app.methode_client.get_single_user')
+                            td
+                                h5  GET /
+                            td {{data.name}}
+                span.pull-right
+                    i.glyphicon.glyphicon-minus
+            .panel-body
+                table.table(border='0')
+                    tr(ng-repeat='data in myData.client_app.methode_client.get_single_user')
+                        td {{data.description}}
+                table.table(border='1')
+                    | REQUEST:
+                    tr
+                        th parameter
+                        th type
+                        th description
+                    tr(ng-repeat='data in myData.client_app.methode_client.get_single_user')
+                        td {{data.request[0].parameter}}
+                        td {{data.request[0].type}}
+                        td {{data.request[0].description}}
+                table.table(border='1')
+                    | RESPONSE:
+                    tr
+                        th code
+                        th reason
+                    tr(ng-repeat='data in myData.client_app.methode_client.get_single_user')
+                        td {{data.response[0].code}}
+                        td {{data.response[0].reason}}
+                    tr(ng-repeat='data in myData.client_app.methode_client.get_single_user')
+                        td {{data.response[1].code}}
+                        td {{data.response[1].reason}}
+                    tr(ng-repeat='data in myData.client_app.methode_client.get_single_user')
+                        td {{data.response[2].code}}
+                        td {{data.response[2].reason}}
 
 
 
@@ -143,6 +761,12 @@ html
 <script src="/javascripts/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="/javascripts/ace/ext-language_tools.js"></script>
 <script src="/javascripts/aceconfig.js" type="text/javascript"></script>
+<script src="javascripts/sweetalert.min.js"></script>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src="javascripts/documentation.js"></script>
+
 
 </body>
 </html>

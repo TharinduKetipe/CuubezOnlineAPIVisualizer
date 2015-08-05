@@ -2,16 +2,18 @@
         position: absolute;
         top: 10%;
         right: 50%;
-        bottom: 10%;
+        bottom: 0%;
         left: 0;
+        height: 100%;
     }
 #documentation {
 
 	position: absolute;
         top: 10%;
         right: 0;
-        bottom: 10%;
+        bottom:20%;
         left: 50%;
+        height: 60%;
 
 
 
