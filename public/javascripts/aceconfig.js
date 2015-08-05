@@ -14,9 +14,7 @@ document.getElementById('editor').style.fontSize='15px';
 
 
 
-//var code  = editor.getValue();
-//nativeObject = YAML.parse(editor.getValue());
-//console.log(nativeObject);
+
 
 
 

@@ -1,4 +1,4 @@
-doctype html(ng-app='myApp')
+doctype html
 html
   html
     head(lang='en')
@@ -13,6 +13,7 @@ html
       link(href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', rel='stylesheet')
       link(href='http://fonts.googleapis.com/css?family=Righteous', rel='stylesheet', type='text/css')
       link(href='/stylesheets/sweetalert.css', rel='stylesheet')
+      link(href='/stylesheets/documentation.css', rel='stylesheet')
       link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css')
       link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css')
 
@@ -341,418 +342,578 @@ html
 </div>
 
 
-#documentation.col-md-6
-    form(name='myForm', ng-controller='jsonCtrl')
-        p {{myData}}
-        input#jsoncode(type='hidden', name='input', ng-model='myData')
-    .container(ng-controller='jsonCtrl')
-        table(border='0')
-            tr(ng-repeat='data in myData.web_app.main')
-                .page-header
-                    td
-                        h1  {{data.Description_title}}
-            tr(ng-repeat='data in myData.web_app.main')
-                .page-header
-                    td
-                        h3 {{data.Description}}
-        .panel.panel-default
-            .panel-heading.clickable
-                h3.panel-title
-                    table(border='0')
-                        tr(ng-repeat='data in myData.web_app.head')
-                            td
-                                h4  {{data.title}}
-                            td {{data.class_server}}
-        //
-          <tr ng-repeat="data in myData.web_app">
-          <td><h4> {{data.Description_title}}  </h4></td>
-          <td>{{data.Description}}</td>
-          </tr>
-        .panel.panel-primary
-            .panel-heading.clickable
-                h3.panel-title
-                    table(border='0')
-                        tr(ng-repeat='data in myData.web_app.methode_server.get_group')
-                            td
-                                h5  GET /
-                            td {{data.name}}
-                span.pull-right
-                    i.glyphicon.glyphicon-minus
-            .panel-body
-                table.table(border='0')
-                    tr(ng-repeat='data in myData.web_app.methode_server.get_group')
-                        td {{data.description}}
-                        table.table(border='1')
-                            | RESPONSE:
-                            tr
-                                th Code
-                                th Reason
-                            tr(ng-repeat='data in myData.web_app.methode_server.get_group')
-                                td {{data.response[0].code}}
-                                td {{data.response[0].reason}}
-                            tr(ng-repeat='data in myData.web_app.methode_server.get_group')
-                                td {{data.response[1].code}}
-                                td {{data.response[1].reason}}
-                        table(border='0')
-                            | BODY
-                            tr(ng-repeat='data in myData.web_app.methode_server.get_group')
-                                td
-                                    textarea.form-control(readonly='', cols='100', rows='4')
-                                        | {{data.body | json}}
-        .panel.panel-success
-            .panel-heading.clickable
-                h3.panel-title
-                    table(border='0')
-                        tr(ng-repeat='data in myData.web_app.methode_server.get_group')
-                            td
-                                h5  POST /
-                            td {{data.name}}
-                span.pull-right
-                    i.glyphicon.glyphicon-minus
-            .panel-body
-                table.table(border='0')
-                    tr(ng-repeat='data in myData.web_app.methode_server.post_single')
-                        td {{data.description}}
-                        table.table(border='1')
-                            | RESPONSE:
-                            tr
-                                th Reason
-                            table(border='0')
-                                | BODY:
-                                table(border='0')
-                                    tr(ng-repeat='data in myData.web_app.methode_server.post_single')
-                                        td
-                                            textarea.body-textarea(readonly='', cols='100', rows='4')
-                                                | {{data.body | json}}
-                tr(ng-repeat='data in myData.web_app.methode_server.post_single')
-                    td {{data.response[0].code}}
-                    td {{data.response[0].reason}}
-                tr(ng-repeat='data in myData.web_app.methode_server.post_single')
-                    td {{data.response[1].code}}
-                    td {{data.response[1].reason}}
-        // - GET SINGLE
-        .panel.panel-primary
-            .panel-heading.clickable
-                h3.panel-title
-                    table(border='0')
-                        tr(ng-repeat='data in myData.web_app.methode_server.get_single')
-                            td
-                                h5  GET /
-                            td {{data.name}}
-                span.pull-right
-                    i.glyphicon.glyphicon-minus
-            .panel-body
-                table.table(border='0')
-                    tr(ng-repeat='data in myData.web_app.methode_server.get_single')
-                        td {{data.description}}
-                table.table(border='1')
-                    | REQUEST:
-                    tr
-                        th parameter
-                        th type
-                        th description
-                    tr(ng-repeat='data in myData.web_app.methode_server.get_single')
-                        td {{data.request[0].parameter}}
-                        td {{data.request[0].type}}
-                        td {{data.request[0].description}}
-                    tr(ng-repeat='data in myData.web_app.methode_server.get_single')
-                        td {{data.request[1].parameter}}
-                        td {{data.request[1].type}}
-                        td {{data.request[1].description}}
-                table.table(border='1')
-                    | RESPONSE:
-                    tr
-                        th code
-                        th reason
-                    tr(ng-repeat='data in myData.web_app.methode_server.get_single')
-                        td {{data.response[0].code}}
-                        td {{data.response[0].reason}}
-                    tr(ng-repeat='data in myData.web_app.methode_server.get_single')
-                        td {{data.response[1].code}}
-                        td {{data.response[1].reason}}
-                    tr(ng-repeat='data in myData.web_app.methode_server.get_single')
-                        td {{data.response[2].code}}
-                        td {{data.response[2].reason}}
-        .panel.panel-danger
-            .panel-heading.clickable
-                h3.panel-title
-                    table(border='0')
-                        tr(ng-repeat='data in myData.web_app.methode_server.delete_single')
-                            td
-                                h5  DELETE /
-                            td {{data.name}}
-                span.pull-right
-                    i.glyphicon.glyphicon-minus
-            .panel-body
-                table.table(border='0')
-                    tr(ng-repeat='data in myData.web_app.methode_server.delete_single')
-                        td {{data.description}}
-                table.table(border='1')
-                    | REQUEST:
-                    tr
-                        th parameter
-                        th type
-                        th description
-                    tr(ng-repeat='data in myData.web_app.methode_server.delete_single')
-                        td {{data.request[0].parameter}}
-                        td {{data.request[0].type}}
-                        td {{data.request[0].description}}
-                table.table(border='1')
-                    | RESPONSE:
-                    tr
-                        th code
-                        th reason
-                    tr(ng-repeat='data in myData.web_app.methode_server.delete_single')
-                        td {{data.response[0].code}}
-                        td {{data.response[0].reason}}
-                    tr(ng-repeat='data in myData.web_app.methode_server.delete_single')
-                        td {{data.response[1].code}}
-                        td {{data.response[1].reason}}
-                    tr(ng-repeat='data in myData.web_app.methode_server.delete_single')
-                        td {{data.response[2].code}}
-                        td {{data.response[2].reason}}
-        .panel.panel-warning
-            .panel-heading.clickable
-                h3.panel-title
-                    table(border='0')
-                        tr(ng-repeat='data in myData.web_app.methode_server.put_single')
-                            td
-                                h5  PUT /
-                            td {{data.name}}
-                span.pull-right
-                    i.glyphicon.glyphicon-minus
-            .panel-body
-                table.table(border='0')
-                    tr(ng-repeat='data in myData.web_app.methode_server.put_single')
-                        td {{data.description}}
-                        table.table(border='1')
-                            | REQUEST:
-                            tr
-                                th parameter
-                                th type
-                                th description
-                            tr(ng-repeat='data in myData.web_app.methode_server.put_single')
-                                td {{data.request[0].parameter}}
-                                td {{data.request[0].type}}
-                                td {{data.request[0].description}}
-                        table.table(border='1')
-                            | RESPONSE:
-                            tr
-                                th code
-                                th reason
-                            table(border='0')
-                                | BODY:
-                                table(border='0')
-                                    tr(ng-repeat='data in myData.web_app.methode_server.put_single')
-                                        td
-                                            textarea.body-textarea(readonly='', cols='100', rows='4')
-                                                | {{data.body | json}}
-                            tr(ng-repeat='data in myData.web_app.methode_server.put_single')
-                                td {{data.response[0].code}}
-                                td {{data.response[0].reason}}
-                            tr(ng-repeat='data in myData.web_app.methode_server.delete_single')
-                                td {{data.response[1].code}}
-                                td {{data.response[1].reason}}
-                            tr(ng-repeat='data in myData.web_app.methode_server.delete_single')
-                                td {{data.response[2].code}}
-                                td {{data.response[2].reason}}
-        .panel.panel-default
-            .panel-heading.clickable
-                h3.panel-title
-                    table(border='0')
-                        tr(ng-repeat='data in myData.client_app.methode_client.head')
-                            td
-                                h4  {{data.title}} :
-                            td
-                                h4  {{data.class_client}}
-        .panel.panel-success
-            .panel-heading.clickable
-                h3.panel-title
-                    table(border='0')
-                        tr(ng-repeat='data in myData.client_app.methode_client.post_single_user')
-                            td
-                                h5  POST /
-                            td {{data.name}}
-                span.pull-right
-                    i.glyphicon.glyphicon-minus
-            .panel-body
-                table.table(border='0')
-                    tr(ng-repeat='data in myData.client_app.methode_client.post_single_user')
-                        td {{data.description}}
-                        table.table(border='1')
-                            | RESPONSE:
-                            tr
-                                th Code
-                                th Reason
-                            tr(ng-repeat='data in myData.client_app.methode_client.post_single_user')
-                                td {{data.response[0].code}}
-                                td {{data.response[0].reason}}
-                            tr(ng-repeat='data in myData.client_app.methode_client.post_single_user')
-                                td {{data.response[1].code}}
-                                td {{data.response[1].reason}}
-                        table(border='0')
-                            | BODY:
-                            table(border='0')
-                                tr(ng-repeat='data in myData.client_app.methode_client.post_single_user')
-                                    td
-                                        textarea.body-textarea(readonly='', cols='100', rows='4')
-                                            | {{data.body | json}}
-        .panel.panel-danger
-            .panel-heading.clickable
-                h3.panel-title
-                    table(border='0')
-                        tr(ng-repeat='data in myData.client_app.methode_client.delete_single_user')
-                            td
-                                h5  DELETE /
-                            td {{data.name}}
-                span.pull-right
-                    i.glyphicon.glyphicon-minus
-            .panel-body
-                table.table(border='0')
-                    tr(ng-repeat='data in myData.client_app.methode_client.delete_single_user')
-                        td {{data.description}}
-                table.table(border='1')
-                    | REQUEST:
-                    tr
-                        th parameter
-                        th type
-                        th description
-                    tr(ng-repeat='data in myData.client_app.methode_client.delete_single_user')
-                        td {{data.request[0].parameter}}
-                        td {{data.request[0].type}}
-                        td {{data.request[0].description}}
-                table.table(border='1')
-                    | RESPONSE:
-                    tr
-                        th code
-                        th reason
-                    tr(ng-repeat='data in myData.client_app.methode_client.delete_single_user')
-                        td {{data.response[0].code}}
-                        td {{data.response[0].reason}}
-                    tr(ng-repeat='data in myData.client_app.methode_client.delete_single_user')
-                        td {{data.response[1].code}}
-                        td {{data.response[1].reason}}
-                    tr(ng-repeat='data in myData.client_app.methode_client.delete_single_user')
-                        td {{data.response[2].code}}
-                        td {{data.response[2].reason}}
-        .panel.panel-warning
-            .panel-heading.clickable
-                h3.panel-title
-                    table(border='0')
-                        tr(ng-repeat='data in myData.client_app.methode_client.put_single_user')
-                            td
-                                h5  PUT /
-                            td {{data.name}}
-                span.pull-right
-                    i.glyphicon.glyphicon-minus
-            .panel-body
-                table.table(border='0')
-                    tr(ng-repeat='data in myData.client_app.methode_client.put_single_user')
-                        td {{data.description}}
-                        table.table(border='1')
-                            | REQUEST:
-                            tr
-                                th parameter
-                                th type
-                                th description
-                            tr(ng-repeat='data in myData.client_app.methode_client.put_single_user')
-                                td {{data.request[0].parameter}}
-                                td {{data.request[0].type}}
-                                td {{data.request[0].description}}
-                        table.table(border='1')
-                            | RESPONSE:
-                            tr
-                                th code
-                                th reason
-                            tr(ng-repeat='data in myData.client_app.methode_client.put_single_user')
-                                td {{data.response[0].code}}
-                                td {{data.response[0].reason}}
-                            tr(ng-repeat='data in myData.client_app.methode_client.put_single_user')
-                                td {{data.response[1].code}}
-                                td {{data.response[1].reason}}
-                            tr(ng-repeat='data in myData.client_app.methode_client.put_single_user')
-                                td {{data.response[2].code}}
-                                td {{data.response[2].reason}}
-                        table(border='0')
-                            | BODY:
-                            table(border='0')
-                                tr(ng-repeat='data in myData.client_app.methode_client.put_single_user')
-                                    td
-                                        textarea.body-textarea(readonly='', cols='100', rows='4')
-                                            | {{data.body | json}}
-        .panel.panel-primary
-            .panel-heading.clickable
-                h3.panel-title
-                    table(border='0')
-                        tr(ng-repeat='data in myData.client_app.methode_client.get_users')
-                            td
-                                h5  GET /
-                            td {{data.name}}
-                span.pull-right
-                    i.glyphicon.glyphicon-minus
-            .panel-body
-                table.table(border='0')
-                    tr(ng-repeat='data in myData.client_app.methode_client.get_users')
-                        td {{data.description}}
-                        table.table(border='1')
-                            | RESPONSE:
-                            tr
-                                th Code
-                                th Reason
-                            tr(ng-repeat='data in myData.client_app.methode_client.get_users')
-                                td {{data.response[0].code}}
-                                td {{data.response[0].reason}}
-                            tr(ng-repeat='data in myData.client_app.methode_client.get_users')
-                                td {{data.response[1].code}}
-                                td {{data.response[1].reason}}
-                        table(border='0')
-                            | BODY:
-                            table(border='0')
-                                tr(ng-repeat='data in myData.client_app.methode_client.get_users')
-                                    td
-                                        textarea.body-textarea(readonly='', cols='100', rows='4')
-                                            | {{data.body | json}}
-        .panel.panel-primary
-            .panel-heading.clickable
-                h3.panel-title
-                    table(border='0')
-                        tr(ng-repeat='data in myData.client_app.methode_client.get_single_user')
-                            td
-                                h5  GET /
-                            td {{data.name}}
-                span.pull-right
-                    i.glyphicon.glyphicon-minus
-            .panel-body
-                table.table(border='0')
-                    tr(ng-repeat='data in myData.client_app.methode_client.get_single_user')
-                        td {{data.description}}
-                table.table(border='1')
-                    | REQUEST:
-                    tr
-                        th parameter
-                        th type
-                        th description
-                    tr(ng-repeat='data in myData.client_app.methode_client.get_single_user')
-                        td {{data.request[0].parameter}}
-                        td {{data.request[0].type}}
-                        td {{data.request[0].description}}
-                table.table(border='1')
-                    | RESPONSE:
-                    tr
-                        th code
-                        th reason
-                    tr(ng-repeat='data in myData.client_app.methode_client.get_single_user')
-                        td {{data.response[0].code}}
-                        td {{data.response[0].reason}}
-                    tr(ng-repeat='data in myData.client_app.methode_client.get_single_user')
-                        td {{data.response[1].code}}
-                        td {{data.response[1].reason}}
-                    tr(ng-repeat='data in myData.client_app.methode_client.get_single_user')
-                        td {{data.response[2].code}}
-                        td {{data.response[2].reason}}
 
 
 
+:verbatim
+    <div id="documentation" class="col-md-6">
+    <div ng-controller="jsonCtrl" class="col-md-12">
+    <form name="myForm" >
+
+    <input id="jsoncode" type="hidden" name="input" ng-model="myData"/>
+    </form>
+    <table border="0">
+    <tr ng-repeat="data in myData.web_app.main">
+    <div class="page-header">
+    <td>
+    <h1> {{data.Description_title}}</h1>
+    </td>
+    </div>
+    </tr>
+    <tr ng-repeat="data in myData.web_app.main">
+    <div class="page-header">
+    <td>
+    <h3>{{data.Description}}</h3>
+    </td>
+    </div>
+    </tr>
+    </table>
+    <div class="panel panel-default">
+    <div class="panel-heading clickable">
+    <h3 class="panel-title">
+    <table border="0">
+    <tr ng-repeat="data in myData.web_app.head">
+    <td>
+    <h4> {{data.title}}</h4>
+    </td>
+    <td>{{data.class_server}}</td>
+    </tr>
+    </table>
+    </h3>
+    </div>
+    </div>
+    <!--
+    <tr ng-repeat="data in myData.web_app">
+    <td><h4> {{data.Description_title}}  </h4></td>
+    <td>{{data.Description}}</td>
+    </tr>
+    -->
+    <div class="panel panel-primary">
+    <div class="panel-heading clickable">
+    <h3 class="panel-title">
+    <table border="0">
+    <tr ng-repeat="data in myData.web_app.methode_server.get_group">
+    <td>
+    <h5> GET /</h5>
+    </td>
+    <td>{{data.name}}</td>
+    </tr>
+    </table>
+    </h3><span class="pull-right"><i class="glyphicon glyphicon-minus"></i></span>
+    </div>
+    <div class="panel-body">
+    <table border="0" class="table">
+    <tr ng-repeat="data in myData.web_app.methode_server.get_group">
+    <td>{{data.description}}</td>
+    <table border="1" class="table">RESPONSE:
+    <tr>
+    <th>Code</th>
+    <th>Reason</th>
+    </tr>
+    <tr ng-repeat="data in myData.web_app.methode_server.get_group">
+    <td>{{data.response[0].code}}</td>
+    <td>{{data.response[0].reason}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.web_app.methode_server.get_group">
+    <td>{{data.response[1].code}}</td>
+    <td>{{data.response[1].reason}}</td>
+    </tr>
+    </table>
+    <table border="0">BODY
+    <tr ng-repeat="data in myData.web_app.methode_server.get_group">
+    <td>
+    <textarea readonly="" cols="100" rows="4" class="form-control">{{data.body | json}}</textarea>
+    </td>
+    </tr>
+    </table>
+    </tr>
+    </table>
+    </div>
+    </div>
+    <div class="panel panel-success">
+    <div class="panel-heading clickable">
+    <h3 class="panel-title">
+    <table border="0">
+    <tr ng-repeat="data in myData.web_app.methode_server.get_group">
+    <td>
+    <h5> POST /</h5>
+    </td>
+    <td>{{data.name}}</td>
+    </tr>
+    </table>
+    </h3><span class="pull-right"><i class="glyphicon glyphicon-minus"></i></span>
+    </div>
+    <div class="panel-body">
+    <table border="0" class="table">
+    <tr ng-repeat="data in myData.web_app.methode_server.post_single">
+    <td>{{data.description}}</td>
+    <table border="1" class="table">RESPONSE:
+    <tr>
+    <th>Reason</th>
+    </tr>
+    <table border="0">BODY:
+    <table border="0">
+    <tr ng-repeat="data in myData.web_app.methode_server.post_single">
+    <td>
+    <textarea readonly="" cols="100" rows="4" class="body-textarea">{{data.body | json}}</textarea>
+    </td>
+    </tr>
+    </table>
+    </table>
+    </table>
+    </tr>
+    </table>
+    <tr ng-repeat="data in myData.web_app.methode_server.post_single">
+    <td>{{data.response[0].code}}</td>
+    <td>{{data.response[0].reason}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.web_app.methode_server.post_single">
+    <td>{{data.response[1].code}}</td>
+    <td>{{data.response[1].reason}}</td>
+    </tr>
+    </div>
+    </div>
+    <!-- - GET SINGLE-->
+    <div class="panel panel-primary">
+    <div class="panel-heading clickable">
+    <h3 class="panel-title">
+    <table border="0">
+    <tr ng-repeat="data in myData.web_app.methode_server.get_single">
+    <td>
+    <h5> GET /</h5>
+    </td>
+    <td>{{data.name}}</td>
+    </tr>
+    </table>
+    </h3><span class="pull-right"><i class="glyphicon glyphicon-minus"></i></span>
+    </div>
+    <div class="panel-body">
+    <table border="0" class="table">
+    <tr ng-repeat="data in myData.web_app.methode_server.get_single">
+    <td>{{data.description}}</td>
+    </tr>
+    </table>
+    <table border="1" class="table">REQUEST:
+    <tr>
+    <th>parameter</th>
+    <th>type</th>
+    <th>description</th>
+    </tr>
+    <tr ng-repeat="data in myData.web_app.methode_server.get_single">
+    <td>{{data.request[0].parameter}}</td>
+    <td>{{data.request[0].type}}</td>
+    <td>{{data.request[0].description}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.web_app.methode_server.get_single">
+    <td>{{data.request[1].parameter}}</td>
+    <td>{{data.request[1].type}}</td>
+    <td>{{data.request[1].description}}</td>
+    </tr>
+    </table>
+    <table border="1" class="table">RESPONSE:
+    <tr>
+    <th>code</th>
+    <th>reason</th>
+    </tr>
+    <tr ng-repeat="data in myData.web_app.methode_server.get_single">
+    <td>{{data.response[0].code}}</td>
+    <td>{{data.response[0].reason}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.web_app.methode_server.get_single">
+    <td>{{data.response[1].code}}</td>
+    <td>{{data.response[1].reason}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.web_app.methode_server.get_single">
+    <td>{{data.response[2].code}}</td>
+    <td>{{data.response[2].reason}}</td>
+    </tr>
+    </table>
+    </div>
+    </div>
+    <div class="panel panel-danger">
+    <div class="panel-heading clickable">
+    <h3 class="panel-title">
+    <table border="0">
+    <tr ng-repeat="data in myData.web_app.methode_server.delete_single">
+    <td>
+    <h5> DELETE /</h5>
+    </td>
+    <td>{{data.name}}</td>
+    </tr>
+    </table>
+    </h3><span class="pull-right"><i class="glyphicon glyphicon-minus"></i></span>
+    </div>
+    <div class="panel-body">
+    <table border="0" class="table">
+    <tr ng-repeat="data in myData.web_app.methode_server.delete_single">
+    <td>{{data.description}}</td>
+    </tr>
+    </table>
+    <table border="1" class="table">REQUEST:
+    <tr>
+    <th>parameter</th>
+    <th>type</th>
+    <th>description</th>
+    </tr>
+    <tr ng-repeat="data in myData.web_app.methode_server.delete_single">
+    <td>{{data.request[0].parameter}}</td>
+    <td>{{data.request[0].type}}</td>
+    <td>{{data.request[0].description}}</td>
+    </tr>
+    </table>
+    <table border="1" class="table">RESPONSE:
+    <tr>
+    <th>code</th>
+    <th>reason</th>
+    </tr>
+    <tr ng-repeat="data in myData.web_app.methode_server.delete_single">
+    <td>{{data.response[0].code}}</td>
+    <td>{{data.response[0].reason}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.web_app.methode_server.delete_single">
+    <td>{{data.response[1].code}}</td>
+    <td>{{data.response[1].reason}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.web_app.methode_server.delete_single">
+    <td>{{data.response[2].code}}</td>
+    <td>{{data.response[2].reason}}</td>
+    </tr>
+    </table>
+    </div>
+    </div>
+    <div class="panel panel-warning">
+    <div class="panel-heading clickable">
+    <h3 class="panel-title">
+    <table border="0">
+    <tr ng-repeat="data in myData.web_app.methode_server.put_single">
+    <td>
+    <h5> PUT /</h5>
+    </td>
+    <td>{{data.name}}</td>
+    </tr>
+    </table>
+    </h3><span class="pull-right"><i class="glyphicon glyphicon-minus"></i></span>
+    </div>
+    <div class="panel-body">
+    <table border="0" class="table">
+    <tr ng-repeat="data in myData.web_app.methode_server.put_single">
+    <td>{{data.description}}</td>
+    <table border="1" class="table">REQUEST:
+    <tr>
+    <th>parameter</th>
+    <th>type</th>
+    <th>description</th>
+    </tr>
+    <tr ng-repeat="data in myData.web_app.methode_server.put_single">
+    <td>{{data.request[0].parameter}}</td>
+    <td>{{data.request[0].type}}</td>
+    <td>{{data.request[0].description}}</td>
+    </tr>
+    </table>
+    <table border="1" class="table">RESPONSE:
+    <tr>
+    <th>code</th>
+    <th>reason</th>
+    </tr>
+    <table border="0">BODY:
+    <table border="0">
+    <tr ng-repeat="data in myData.web_app.methode_server.put_single">
+    <td>
+    <textarea readonly="" cols="100" rows="4" class="body-textarea">{{data.body | json}}</textarea>
+    </td>
+    </tr>
+    </table>
+    </table>
+    <tr ng-repeat="data in myData.web_app.methode_server.put_single">
+    <td>{{data.response[0].code}}</td>
+    <td>{{data.response[0].reason}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.web_app.methode_server.delete_single">
+    <td>{{data.response[1].code}}</td>
+    <td>{{data.response[1].reason}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.web_app.methode_server.delete_single">
+    <td>{{data.response[2].code}}</td>
+    <td>{{data.response[2].reason}}</td>
+    </tr>
+    </table>
+    </tr>
+    </table>
+    </div>
+    </div>
+    <div class="panel panel-default">
+    <div class="panel-heading clickable">
+    <h3 class="panel-title">
+    <table border="0">
+    <tr ng-repeat="data in myData.client_app.methode_client.head">
+    <td>
+    <h4> {{data.title}} :</h4>
+    </td>
+    <td>
+    <h4> {{data.class_client}}</h4>
+    </td>
+    </tr>
+    </table>
+    </h3>
+    </div>
+    </div>
+    <div class="panel panel-success">
+    <div class="panel-heading clickable">
+    <h3 class="panel-title">
+    <table border="0">
+    <tr ng-repeat="data in myData.client_app.methode_client.post_single_user">
+    <td>
+    <h5> POST /</h5>
+    </td>
+    <td>{{data.name}}</td>
+    </tr>
+    </table>
+    </h3><span class="pull-right"><i class="glyphicon glyphicon-minus"></i></span>
+    </div>
+    <div class="panel-body">
+    <table border="0" class="table">
+    <tr ng-repeat="data in myData.client_app.methode_client.post_single_user">
+    <td>{{data.description}}</td>
+    <table border="1" class="table">RESPONSE:
+    <tr>
+    <th>Code</th>
+    <th>Reason</th>
+    </tr>
+    <tr ng-repeat="data in myData.client_app.methode_client.post_single_user">
+    <td>{{data.response[0].code}}</td>
+    <td>{{data.response[0].reason}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.client_app.methode_client.post_single_user">
+    <td>{{data.response[1].code}}</td>
+    <td>{{data.response[1].reason}}</td>
+    </tr>
+    </table>
+    <table border="0">BODY:
+    <table border="0">
+    <tr ng-repeat="data in myData.client_app.methode_client.post_single_user">
+    <td>
+    <textarea readonly="" cols="100" rows="4" class="body-textarea">{{data.body | json}}</textarea>
+    </td>
+    </tr>
+    </table>
+    </table>
+    </tr>
+    </table>
+    </div>
+    </div>
+    <div class="panel panel-danger">
+    <div class="panel-heading clickable">
+    <h3 class="panel-title">
+    <table border="0">
+    <tr ng-repeat="data in myData.client_app.methode_client.delete_single_user">
+    <td>
+    <h5> DELETE /</h5>
+    </td>
+    <td>{{data.name}}</td>
+    </tr>
+    </table>
+    </h3><span class="pull-right"><i class="glyphicon glyphicon-minus"></i></span>
+    </div>
+    <div class="panel-body">
+    <table border="0" class="table">
+    <tr ng-repeat="data in myData.client_app.methode_client.delete_single_user">
+    <td>{{data.description}}</td>
+    </tr>
+    </table>
+    <table border="1" class="table">REQUEST:
+    <tr>
+    <th>parameter</th>
+    <th>type</th>
+    <th>description</th>
+    </tr>
+    <tr ng-repeat="data in myData.client_app.methode_client.delete_single_user">
+    <td>{{data.request[0].parameter}}</td>
+    <td>{{data.request[0].type}}</td>
+    <td>{{data.request[0].description}}</td>
+    </tr>
+    </table>
+    <table border="1" class="table">RESPONSE:
+    <tr>
+    <th>code</th>
+    <th>reason</th>
+    </tr>
+    <tr ng-repeat="data in myData.client_app.methode_client.delete_single_user">
+    <td>{{data.response[0].code}}</td>
+    <td>{{data.response[0].reason}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.client_app.methode_client.delete_single_user">
+    <td>{{data.response[1].code}}</td>
+    <td>{{data.response[1].reason}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.client_app.methode_client.delete_single_user">
+    <td>{{data.response[2].code}}</td>
+    <td>{{data.response[2].reason}}</td>
+    </tr>
+    </table>
+    </div>
+    </div>
+    <div class="panel panel-warning">
+    <div class="panel-heading clickable">
+    <h3 class="panel-title">
+    <table border="0">
+    <tr ng-repeat="data in myData.client_app.methode_client.put_single_user">
+    <td>
+    <h5> PUT /</h5>
+    </td>
+    <td>{{data.name}}</td>
+    </tr>
+    </table>
+    </h3><span class="pull-right"><i class="glyphicon glyphicon-minus"></i></span>
+    </div>
+    <div class="panel-body">
+    <table border="0" class="table">
+    <tr ng-repeat="data in myData.client_app.methode_client.put_single_user">
+    <td>{{data.description}}</td>
+    <table border="1" class="table">REQUEST:
+    <tr>
+    <th>parameter</th>
+    <th>type</th>
+    <th>description</th>
+    </tr>
+    <tr ng-repeat="data in myData.client_app.methode_client.put_single_user">
+    <td>{{data.request[0].parameter}}</td>
+    <td>{{data.request[0].type}}</td>
+    <td>{{data.request[0].description}}</td>
+    </tr>
+    </table>
+    <table border="1" class="table">RESPONSE:
+    <tr>
+    <th>code</th>
+    <th>reason</th>
+    </tr>
+    <tr ng-repeat="data in myData.client_app.methode_client.put_single_user">
+    <td>{{data.response[0].code}}</td>
+    <td>{{data.response[0].reason}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.client_app.methode_client.put_single_user">
+    <td>{{data.response[1].code}}</td>
+    <td>{{data.response[1].reason}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.client_app.methode_client.put_single_user">
+    <td>{{data.response[2].code}}</td>
+    <td>{{data.response[2].reason}}</td>
+    </tr>
+    </table>
+    <table border="0">BODY:
+    <table border="0">
+    <tr ng-repeat="data in myData.client_app.methode_client.put_single_user">
+    <td>
+    <textarea readonly="" cols="100" rows="4" class="body-textarea">{{data.body | json}}</textarea>
+    </td>
+    </tr>
+    </table>
+    </table>
+    </tr>
+    </table>
+    </div>
+    </div>
+    <div class="panel panel-primary">
+    <div class="panel-heading clickable">
+    <h3 class="panel-title">
+    <table border="0">
+    <tr ng-repeat="data in myData.client_app.methode_client.get_users">
+    <td>
+    <h5> GET /</h5>
+    </td>
+    <td>{{data.name}}</td>
+    </tr>
+    </table>
+    </h3><span class="pull-right"><i class="glyphicon glyphicon-minus"></i></span>
+    </div>
+    <div class="panel-body">
+    <table border="0" class="table">
+    <tr ng-repeat="data in myData.client_app.methode_client.get_users">
+    <td>{{data.description}}</td>
+    <table border="1" class="table">RESPONSE:
+    <tr>
+    <th>Code</th>
+    <th>Reason</th>
+    </tr>
+    <tr ng-repeat="data in myData.client_app.methode_client.get_users">
+    <td>{{data.response[0].code}}</td>
+    <td>{{data.response[0].reason}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.client_app.methode_client.get_users">
+    <td>{{data.response[1].code}}</td>
+    <td>{{data.response[1].reason}}</td>
+    </tr>
+    </table>
+    <table border="0">BODY:
+    <table border="0">
+    <tr ng-repeat="data in myData.client_app.methode_client.get_users">
+    <td>
+    <textarea readonly="" cols="100" rows="4" class="body-textarea">{{data.body | json}}</textarea>
+    </td>
+    </tr>
+    </table>
+    </table>
+    </tr>
+    </table>
+    </div>
+    </div>
+    <div class="panel panel-primary">
+    <div class="panel-heading clickable">
+    <h3 class="panel-title">
+    <table border="0">
+    <tr ng-repeat="data in myData.client_app.methode_client.get_single_user">
+    <td>
+    <h5> GET /</h5>
+    </td>
+    <td>{{data.name}}</td>
+    </tr>
+    </table>
+    </h3><span class="pull-right"><i class="glyphicon glyphicon-minus"></i></span>
+    </div>
+    <div class="panel-body">
+    <table border="0" class="table">
+    <tr ng-repeat="data in myData.client_app.methode_client.get_single_user">
+    <td>{{data.description}}</td>
+    </tr>
+    </table>
+    <table border="1" class="table">REQUEST:
+    <tr>
+    <th>parameter</th>
+    <th>type</th>
+    <th>description</th>
+    </tr>
+    <tr ng-repeat="data in myData.client_app.methode_client.get_single_user">
+    <td>{{data.request[0].parameter}}</td>
+    <td>{{data.request[0].type}}</td>
+    <td>{{data.request[0].description}}</td>
+    </tr>
+    </table>
+    <table border="1" class="table">RESPONSE:
+    <tr>
+    <th>code</th>
+    <th>reason</th>
+    </tr>
+    <tr ng-repeat="data in myData.client_app.methode_client.get_single_user">
+    <td>{{data.response[0].code}}</td>
+    <td>{{data.response[0].reason}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.client_app.methode_client.get_single_user">
+    <td>{{data.response[1].code}}</td>
+    <td>{{data.response[1].reason}}</td>
+    </tr>
+    <tr ng-repeat="data in myData.client_app.methode_client.get_single_user">
+    <td>{{data.response[2].code}}</td>
+    <td>{{data.response[2].reason}}</td>
+    </tr>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
+</div>
 
 <div class="footer">
 </div>
