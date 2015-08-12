@@ -350,13 +350,23 @@ html
     <div ng-controller="jsonCtrl" class="col-md-12">
     <form name="myForm" >
 
-    <input id="jsoncode" type="hidden" name="input" ng-model="myData"/>
-    </form>
+    <input id="jsoncode" type="text" name="input" ng-model="myData"/>
+    <p>{{myData}}</p>
+
+
+
+
     <table border="0">
     <tr ng-repeat="data in myData.web_app.main">
     <div class="page-header">
     <td>
+
     <h1> {{data.Description_title}}</h1>
+
+    </td>
+    <td>
+    <h1> {{data.Description_title}}</h1>
+
     </td>
     </div>
     </tr>
@@ -908,6 +918,7 @@ html
     </div>
     </div>
     </div>
+    </form>
     </div>
 
 

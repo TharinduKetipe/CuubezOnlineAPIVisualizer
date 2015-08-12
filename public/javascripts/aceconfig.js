@@ -31,13 +31,19 @@ editor.getSession().on('change', function(e) {
 
 try{
     nativeObject = YAML.parse(editor.getValue());
-    //var out  = nativeObject.toString();
-    var out = JSON.stringify(nativeObject);
-    console.log(out);
+    var outstr  = nativeObject.toString();
+    //var out = JSON.stringify(nativeObject);
+    //to pass the web app.main to the html element\
+    var out = JSON.stringify(nativeObject.web_app.main);
+    //console.log(out);
 
+    //var ou = JSON.parse(editor.getValue());
+    console.log(nativeObject.web_app.main);
 
     $('#jsoncode').val(out);
     $('#jsoncode').trigger('input');
+
+
 
 
 
