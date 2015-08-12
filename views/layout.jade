@@ -1,24 +1,22 @@
 doctype html
 html
-  html
-    head(lang='en')
-      meta(charset='UTF-8')
-      title CuuBEZ Editor
-      meta(name='description', content='description')
-      meta(name='author', content='CuuBEZ')
-      meta(name='viewport', content='width=device-width, initial-scale=1')
-      link(href='/stylesheets/bootstrap.css', rel='stylesheet')
-      link(href='/stylesheets/editor.css', rel='stylesheet')
-      link(href='/javascripts/bootstrap.js', rel='stylesheet')
-      link(href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', rel='stylesheet')
-      link(href='http://fonts.googleapis.com/css?family=Righteous', rel='stylesheet', type='text/css')
-      link(href='/stylesheets/sweetalert.css', rel='stylesheet')
-      link(href='/stylesheets/documentation.css', rel='stylesheet')
-      link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css')
-      link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css')
-
+    html
+        head(lang='en')
+            meta(charset='UTF-8')
+            title CuuBEZ Editor
+            meta(name='description', content='description')
+            meta(name='author', content='CuuBEZ')
+            meta(name='viewport', content='width=device-width, initial-scale=1')
+            link(href='/stylesheets/bootstrap.css', rel='stylesheet')
+            link(href='/stylesheets/editor.css', rel='stylesheet')
+            link(href='/javascripts/bootstrap.js', rel='stylesheet')
+            link(href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', rel='stylesheet')
+            link(href='http://fonts.googleapis.com/css?family=Righteous', rel='stylesheet', type='text/css')
+            link(href='/stylesheets/sweetalert.css', rel='stylesheet')
+            link(href='/stylesheets/documentation.css', rel='stylesheet')
+            link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css')
+            link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css')
 <body ng-app="myApp">
-
 <nav class="navbar navbar-default">
 <div class="container-fluid">
 <!-- Brand and toggle get grouped for better mobile display -->
@@ -33,9 +31,7 @@ html
 </div>
 <ul class="nav navbar-nav">
 <li ><h3>Online Editor</h3><span class="sr-only">(current)</span></li>
-
 </ul>
-
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 <ul class="nav navbar-nav navbar-right">
@@ -54,12 +50,8 @@ html
 </div><!-- /.navbar-collapse -->
 </div><!-- /.container-fluid -->
 </nav>
-
-
 <div class="row">
-
 <div id="editor" class="col-md-6">
-
 :verbatim
     ---
     web_app:
@@ -330,31 +322,19 @@ html
               -
                 code: "400"
                 reason: "no user found"
-
-
-
-
-
-
-
-
-
 </div>
-
-
-
-
-
 :verbatim
     <div id="documentation" class="col-md-6">
     <div ng-controller="jsonCtrl" class="col-md-12">
     <form name="myForm" >
-
-    <input id="jsoncode" type="hidden" name="input" ng-model="myData"/>
-    </form>
+    <input json-input id="jsoncode" type="text" name="input" ng-model="myData"/>
+    <p>{{myData}}</p>
     <table border="0">
     <tr ng-repeat="data in myData.web_app.main">
     <div class="page-header">
+    <td>
+    <h1> {{data.Description_title}}</h1>
+    </td>
     <td>
     <h1> {{data.Description_title}}</h1>
     </td>
@@ -908,16 +888,11 @@ html
     </div>
     </div>
     </div>
+    </form>
     </div>
-
-
-
-
 </div>
-
 <div class="footer">
 </div>
-
 <script type="text/javascript" src="/javascripts/fyaml.js"></script>
 <script src="/javascripts/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="/javascripts/ace/ext-language_tools.js"></script>
@@ -926,8 +901,8 @@ html
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script type="text/javascript" src="/javascripts/angular/app.js"></script>
+<script type="text/javascript" src="/javascripts/angular/jsonCtrl.js"></script>
 <script src="javascripts/documentation.js"></script>
-
-
 </body>
 </html>
