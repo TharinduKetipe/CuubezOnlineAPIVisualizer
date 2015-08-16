@@ -30,7 +30,7 @@ html
 <img src="https://code.google.com/p/cuubez/logo?cct=1409036089">
 </div>
 <ul class="nav navbar-nav">
-<li ><h3>Online Editor</h3><span class="sr-only">(current)</span></li>
+<li ><h3>Online API Visualizer</h3><span class="sr-only">(current)</span></li>
 </ul>
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -327,25 +327,22 @@ html
     <div id="documentation" class="col-md-6">
     <div ng-controller="jsonCtrl" class="col-md-12">
     <form name="myForm" >
-    <input json-input id="jsoncode" type="text" name="input" ng-model="myData"/>
-    <!--<p>{{myData}}</p>-->
+    <input json-input id="jsoncode" type="hidden" name="input" ng-model="myData"/>
+
     <table border="0">
     <tr ng-repeat="data in myData.web_app.main">
-    <div class="page-header">
+
     <td>
-    <h1> {{data.Description_title}}</h1>
+    <h3> {{data.Description_title}}</h3>
     </td>
-    <td>
-    <h1> {{data.Description_title}}</h1>
-    </td>
-    </div>
+
     </tr>
     <tr ng-repeat="data in myData.web_app.main">
-    <div class="page-header">
-    <td>
-    <h3>{{data.Description}}</h3>
+
+    <td style="text-align:justify">
+    <h5>{{data.Description}}</h5>
     </td>
-    </div>
+
     </tr>
     </table>
     <div class="panel panel-default">
