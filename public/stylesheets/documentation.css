@@ -1,0 +1,56 @@
+th {
+    background-color: #D0D0D0;
+}
+
+.panel-primary{
+    background-color: #E5F3FF;
+}
+
+.panel-success{
+    background-color: #E8FFF0;
+}
+
+.panel-danger{
+    background-color: #F7EDED;
+}
+
+.panel-warning{
+    background-color: #FFF3E5;
+}
+
+.panel-heading {
+    cursor: pointer;
+}
+
+.body-textarea {
+    width: 846px !important;
+    height: 150px !important;
+}
+
+.clickable
+{
+    cursor: pointer;
+}
+
+.clickable .glyphicon
+{
+    background: rgba(0, 0, 0, 0.15);
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px
+}
+
+.panel-heading span
+{
+    margin-top: -23px;
+    font-size: 15px;
+    margin-right: -9px;
+}
+
+div.jsonset {
+
+    height: 600px;
+    overflow: scroll;
+}
+a.clickable { color: inherit; }
+a.clickable:hover { text-decoration:none; }
